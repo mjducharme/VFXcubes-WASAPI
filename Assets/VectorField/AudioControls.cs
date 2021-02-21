@@ -31,6 +31,7 @@ public class AudioControls : MonoBehaviour
         {
             for (int x = 0; x < Audio.bufferSize; x++)
             {
+                Debug.Log("x is " + x + " and y is " + y);
                 height = new Color(
                     audioData[Audio.bufferSize-x-1, y]*normalizedVolume,
                     audioData[Audio.bufferSize-x-1, y]*normalizedVolume,
