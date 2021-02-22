@@ -27,18 +27,21 @@ public class AudioControls : MonoBehaviour
 
         Texture2D texture = new Texture2D(Audio.bufferSize, Audio.SpectrumSize);
 
-        for (int y = 0; y < Audio.SpectrumSize; y++)
+        if ((Audio.SpectrumSize > 0) && (Audio.bufferSize > 0)) 
         {
-            for (int x = 0; x < Audio.bufferSize; x++)
+            for (int y = 0; y < Audio.SpectrumSize; y++)
             {
-                Debug.Log("x is " + x + " and y is " + y);
-                height = new Color(
-                    audioData[Audio.bufferSize-x-1, y]*normalizedVolume,
-                    audioData[Audio.bufferSize-x-1, y]*normalizedVolume,
-                    audioData[Audio.bufferSize-x-1, y]*normalizedVolume,
-                    1f
-                );
-                texture.SetPixel(x, y, height);
+                for (int x = 0; x < Audio.bufferSize; x++)
+                {
+                    //Debug.Log("x is " + x + " and y is " + y);
+                    height = new Color(
+                        audioData[Audio.bufferSize-x-1, y]*normalizedVolume,
+                        audioData[Audio.bufferSize-x-1, y]*normalizedVolume,
+                        audioData[Audio.bufferSize-x-1, y]*normalizedVolume,
+                        1f
+                    );
+                    texture.SetPixel(x, y, height);
+                }
             }
         }
         texture.Apply();
